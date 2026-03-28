@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Amazon Login</title>
+<link rel="stylesheet" href="login.css">
+</head>
+<!--developed by Ashish prajapati
+ Ashish prajapati (project leader )
+mo. 9696181524
+ashishprajapatiraj534@gmail.com -->
+<body>
+
+<div class="form-box">
+
+<h2>Amazon Login</h2>
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<button onclick="login()">Login</button>
+
+<p>New user? <a href="register.html">Create account</a></p>
+
+</div>
+<!-- developed by Ashish prajapati 
+Ashish prajapati (project leader )
+mo. 9696181524
+ashishprajapatiraj534@gmail.com  -->
+<script>
+
+
+async function login() {
+
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  let url = `https://sheetdb.io/api/v1/fk6wid3h31d85/search?email=${email}`;
+
+  try {
+    let res = await fetch(url);
+    let data = await res.json();
+
+    console.log(data); 
+
+    if (data.length > 0) {
+      if (data[0].password === password) {
+        alert("Login Successful ");
+        window.location.href = "index.html";
+      } else {
+        alert("Wrong Password ");
+      }
+    } else {
+      alert("User not found ");
+    }
+
+  } catch (error) {
+    alert("Error connecting to server ⚠️");
+    console.log(error);
+  }
+}</script>
+
+</body>
+</html>
